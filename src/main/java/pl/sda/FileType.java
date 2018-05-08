@@ -1,4 +1,6 @@
 package pl.sda;
 
-public enum FileType {
+public enum FileType { CSV,EXCEL,XML,JSON,;
+
+
 }
