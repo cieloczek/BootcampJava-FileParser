@@ -3,12 +3,12 @@ package pl.sda;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-public class GenObj<T> {
+public class MyGenObj {
 
     HashMap<String, String> values = new HashMap<>();
 
 
-    public GenObj() {
+    public MyGenObj() {
     }
 
     public void addValue(String name, String value){

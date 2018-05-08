@@ -6,14 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVFileReader<T> {
-    public List<GenObj> readPerson (String path) throws IOException {
+public class CSVFileReader<GenObj> implements pl.sda.FileReader{
+
+    private static final String CSV_FILE_NAME =  "data.csv";
+
+    public List read (String path) throws IOException {
+        path = getClass().getClassLoader().getResource(CSV_FILE_NAME).getPath();
         FileReader fileReader = new FileReader(path);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         String[] headers = null;
         String line;
-        List<GenObj> objectList = new ArrayList<>();
+        List objectList = new ArrayList<>();
         int i = 0;
 
         while ((line = bufferedReader.readLine()) != null && !line.isEmpty()) {
@@ -29,8 +33,8 @@ public class CSVFileReader<T> {
         return objectList;
     }
 
-    private GenObj<T> parseCSRow(String[] headers, String line) {
-        GenObj<T> something = new GenObj<>();
+    private GenObj parseCSRow(String[] headers, String line) {
+         GenObj something = new GenObj();
         String[] values = line.split(";");
         for (int i = 0; i < headers.length; i++) {
             setPersonalFieldFromCSV(something, headers[i], values[i]);
